@@ -9,8 +9,9 @@ This is an plugin integration for Adobe Lightroom and therefore requires that Li
 
 ##Retouch Link
 For this plug-in to work certain settings has to be set in the RetouchLink.
-* image file name pattern
-* (fill inn more here)
+* Use default *Image file name* pattern
+* The *Use output directory* must be checked.
+* Retouch Link version must be 2.0.0 or higher
 
 #Installation
 During the installation you have to point it to the folder where Retouhc Link exports the  jobs.
@@ -38,7 +39,7 @@ The plugin imports the next job that is not already taken based on following cri
 
 The menu item to import is found at *File*->Plug-in extras ![Get next job](import-menu.png?raw=true "Get next job")
 
-If a job is available lightroom wil start importing the pictures. This can take some time. If jobs are available you will get a message box saying that.
+If a job is available Lightroom will start importing the pictures, and this can take some time. If no jobs are available you will get a message box saying that.
 
 ![No jobs-available message dialog](no-jobs-available.PNG?raw=true "No jobs-available message")
 
