@@ -3,7 +3,7 @@ User manual
 The integration is built around two seperate Lightroom plugins, one for import and one for export.
 It support two different main scenarios: 
 
-1. *RetouchLink on a locale server serving one or more retouch users*  
+1. *RetouchLink on a local server serving one or more retouch users*  
 RetouchLink running on a server and is set to auto download jobs into a shared folder. The folder is then mapped on the computers the retoucher uses Ligthroom  on, and the users use the plugins to get next available job and export when finished. The plugins is then handling that not multiple users are working on the same jobs, etc.
 
 2. *One RetouchLink per retouch user*  
@@ -35,7 +35,7 @@ The configuration file is found in each of the plugins folder (` *%AppData%\Roam
 *input: the path to the RetouchLink output folder, example `c:\my retouch jobs`.
 *user: is the user id  of the operating system user that runs the installation program. Is used in the job marker files to identify the user that has taken the job.
 *dbg: `false`/`true` If set to true the plugins log more and show dialog messages when they are ran. 
-*allowedCompanies: List of the prefix of hte jobs this user should get. Example `{"c1-","c2-","c3-"}`. If no filter the value must be `{}`. (This is only used by the import plugin)
+*allowedCompanies: List of the prefix of the jobs this user should get. Example `{"c1-","c2-","c3-"}`. If no filter the value must be `{}`. (This is only used by the import plugin)
 *companyExportSettings:  define company spesific rules that is validated against properties in the exportContext.propertyTable. If `dbg = true` all possible values are printed in the log file.  (this is only used by the export plug-in)
 
 Note that if you manually change the config settings you will have to reload the plug-ins in Lightroom.
