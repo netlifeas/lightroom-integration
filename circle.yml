@@ -1,0 +1,30 @@
+machine:
+  environment:
+    BUILD_NUMBER: $CIRCLE_BUILD_NUM
+
+dependencies:
+  pre:
+    - sudo apt-get install zip
+    - sudo apt-get install tree
+    - sudo apt-get install nsis
+
+compile:
+  override:
+    - echo "compile build number ${BUILD_NUMBER}" 
+    - tree
+    - sudo ./makeInstaller ${BUILD_NUMBER}
+  post:
+    - tree
+    - cp target/LR-integration-setup.exe setup-plugin.exe
+    - zip LR-integration setup-plugin.exe
+    - cp LR-integration.zip $CIRCLE_ARTIFACTS/LR-integration.zip
+
+test:
+  override:
+    - echo "no tests"
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - echo 'master'

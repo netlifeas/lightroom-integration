@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Download Lightroom-integration installer </title>
+<script language="javascript">
+
+	var token = "00eb8c0d2aae9c17430a0ba03fe98b31c53eaba8";
+	function httpGetAsync(theUrl, callback)
+	{
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() { 
+			if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+				callback(xmlHttp.responseText);
+		}
+		xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+		xmlHttp.send(null);
+	}
+
+	function process(result){
+		var artifacts = JSON.parse(result);
+		var downloadLink = document.getElementById("installerUrl");
+		downloadLink.href = artifacts[0].url + '?token=' + token;
+		
+	}
+
+</script>
+</head>
+
+<body>
+
+<div>
+	<a id="installerUrl" href="">Download latest version of the installer</a>
+</div>
+
+<script>
+	httpGetAsync("https://circleci.com/api/v1.1/project/github/pixamo/lightroom-integration/latest/artifacts?circle-token=" + token + "&branch=master&filter=successful", process);
+ </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+s = {
+	id = "8B5001E9-F609-4896-8D9D-1F28A4F80EC4",
+	internalName = "NetlifePreset",
+	title = "NetlifePreset",
+	type = "Export",
+	value = {
+		
+		exportServiceProvider = "no.netlife.qa.Export",
+		exportServiceProviderTitle = "Export",
+		export_colorSpace = "sRGB",
+		extensionCase = "lowercase",
+		format = "JPEG",
+		jpeg_limitSize = 100,
+		jpeg_quality = 0.92,
+		jpeg_useLimitSize = false,
+		outputSharpeningMedia = "glossy",
+		outputSharpeningLevel = 2,
+		outputSharpeningOn = false,
+		renamingTokensOn = false,
+		size_doConstrain = false,
+		size_resolution = 300,
+		size_resolutionUnits = "inch",
+		tokens = "{{image_name}}",
+		tokensArchivedToString2 = "{{image_name}}",
+	},
+	version = 0,
+}

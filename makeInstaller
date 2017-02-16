@@ -1,0 +1,16 @@
+#!/bin/bash -e
+
+rm -rf target
+mkdir -p target
+
+BUILD_NUMBER=$1
+
+echo "Build number $BUILD_NUMBER"
+
+makensis \
+    -DBASEDIR=`pwd` \
+    -DSRC=src \
+    -DOUT_FILE=LR-integration-setup.exe \
+    -DVERSION=$BUILD_NUMBER \
+    src/nsis/installer.nsi
+
