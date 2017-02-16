@@ -1,6 +1,14 @@
 User manual
 =====================
 The integration is built around two seperate Lightroom plugins, one for import and one for export.
+It support two different main scenarios: 
+
+1. *RetouchLink on a locale server serving one or more retouch users*  
+RetouchLink running on a server and is set to auto download jobs into a shared folder. The folder is then mapped on the computers the retoucher uses Ligthroom  on, and the users use the plugins to get next available job and export when finished. The plugins is then handling that not multiple users are working on the same jobs, etc.
+
+2. *One RetouchLink per retouch user*  
+The plugins are not need in this case, but it helps the user dong the right things. It also has the benifit of the verification rules that can be set on export. For example that the exported images are in AdobeRGB or sRGB.
+
 
 #Requirements
 
@@ -17,20 +25,20 @@ For this plug-in to work certain settings has to be set in the RetouchLink.
 During the installation you have to point it to the folder where Retouhc Link exports the  jobs.
 ![Choose the folder where Retoruc Link exports jobs](installer-RL-folder.PNG?raw=true "Choose folder")
 
-The installer finds the *Modules* folder for Lightroom and adds the plugins there. On windwows this is usually *%AppData%\Roaming\Adobe\Lightroom\Modules*. You can find the paths for the plugins from the *Lightroom Plug-in Manager* (File->Plug-in Manager)
+The installer finds the *Modules* folder for Lightroom and adds the plugins there. On windwows this is usually ` *%AppData%\Roaming\Adobe\Lightroom\Modules* `. You can find the paths for the plugins from the *Lightroom Plug-in Manager* (File->Plug-in Manager)
 
 ![Plug-in Manager](plugin-manager.png?raw=true "Plug-in Manager")
 It also shows if something is wrong with the plugins and you can turn on diagnostic logging.
 
 #Configuration
-The configuration file is found in each of the plugins folder (*%AppData%\Roaming\Adobe\Lightroom\Modules*)
-*input: the path to the RetouchLink output folder, example "c:\my retouch jobs".
+The configuration file is found in each of the plugins folder (` *%AppData%\Roaming\Adobe\Lightroom\Modules* `)
+*input: the path to the RetouchLink output folder, example `c:\my retouch jobs`.
 *user: is the user id  of the operating system user that runs the installation program. Is used in the job marker files to identify the user that has taken the job.
-*dbg: false/true If set to true the plugins log more and show dialog messages when they are ran. 
-*allowedCompanies: List of the prefix of hte jobs this user should get. Example {"c1-","c2-","c3-"}. If no filter the value must be "{}". (This is only used by the import plugin)
-*companyExportSettings:  define company spesific rules that is validated against properties in the exportContext.propertyTable. If dbg = true all possible values are printed in the log file.  (this is only used by the export plug-in)
+*dbg: `false`/`true` If set to true the plugins log more and show dialog messages when they are ran. 
+*allowedCompanies: List of the prefix of hte jobs this user should get. Example `{"c1-","c2-","c3-"}`. If no filter the value must be `{}`. (This is only used by the import plugin)
+*companyExportSettings:  define company spesific rules that is validated against properties in the exportContext.propertyTable. If `dbg = true` all possible values are printed in the log file.  (this is only used by the export plug-in)
 
-Note that if you manually change the config settings  you will have to reload the plug-ins in Lightroom.
+Note that if you manually change the config settings you will have to reload the plug-ins in Lightroom.
 
 #Import
 The plugin imports the next job that is not already taken based on following criterias:
@@ -49,7 +57,7 @@ Exports the job to an output folder inside the original source folder.
 
 If some images are missing, it shows a messages informing about how many images that is not exported yet. If all are exported it shows a messages saying that and tells you to manually remove the folder from Lightroom, but leave the files on disk. 
 
-It validates the export settings based on the rules defined in *companyExportSettings* in the config file. 
+It validates the export settings based on the rules defined in `companyExportSettings` in the config file. 
 
 
 #FAQ
