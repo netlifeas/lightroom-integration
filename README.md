@@ -17,6 +17,7 @@ This project is licensed with the [GNU GPL3 License](https://www.gnu.org/license
 
 
 #TODOS
-- Let the user select the Reotuch Link folder in the installer
-- Support no company filter
+- Better documentation
 - Better jobname prefix definition
+- Able to set all settings thru the installer
+
