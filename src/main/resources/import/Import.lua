@@ -81,11 +81,11 @@ function debugInfo(area, msg)
 end
 
 function isAllowedCompany(jobFolder)
-	if next(Config.allowedCompanies) == nil then
+	if next(Config.allowedCompanies) == nil  or  Config.charsReservedToCompanyPrefix < 1 then
 		return true
 	end
     local jobName = LrStringUtils.upper(LrPathUtils.leafName(jobFolder))
-	local companyPrefix = string.sub(jobName, 1, 3)
+	local companyPrefix = string.sub(jobName, 1, Config.charsReservedToCompanyPrefix)
 	return has_value(Config.allowedCompanies, companyPrefix)
 end
 

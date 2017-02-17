@@ -29,36 +29,40 @@ ExportTask = {
 	processRenderedPhotos = function( functionContext, exportContext )
 	
 		local inputFolder = inputFolder()
+		logger:trace(inputFolder)
 		local jobName = inputFolder:getName()
 		local jobFolder = child(Config.input, jobName)
 		local outputFolder = createOutputFolder(jobFolder)
 	
 		logger:trace("Starting to export " .. jobName.." with color space: " ..  exportContext.propertyTable["LR_export_colorSpace"] .. " to folder " .. jobFolder)
-		local companyPrefix = string.sub(jobName, 1, 3)
-		local companyExportSettings = Config.companyExportSettings[companyPrefix]				
-
+		
 		if Config.dbg then
 		  -- see a list of all settings in the property table
 		  for k, v in pairs( exportContext.propertyTable["< contents >"] ) do 
 				logger:trace(k .. ': ' .. tostring(v) .. '\n')
 		  end 
 		end
-		
-		if not companyExportSettings then
-			for k, v in pairs( companyExportSettings ) do 
-					logger:trace("Export rule: " .. tostring(k) .. ' = ' .. tostring(v) .. '\n')
-					local currentValue = tostring(exportContext.propertyTable[k])
-					if currentValue ~= tostring(v) then
-						logger:trace("" .. currentValue .. " is not legal setting for " .. k)	
-						 error ("" .. currentValue .. " is not legal setting for " .. k .. ", since that should be " .. tostring(v))
-					end
-			 end 
+
+		if Config.charsReservedToCompanyPrefix > 0 then
+			local companyPrefix = string.sub(jobName, 1, Config.charsReservedToCompanyPrefix)
+			logger:trace("Starting to export " .. jobName.." with color space: " ..  exportContext.propertyTable["LR_export_colorSpace"] .. " to folder " .. jobFolder)
+			local companyExportSettings = Config.companyExportSettings[companyPrefix]				
+	 	
+			if not companyExportSettings == nil and not next(companyExportSettings) == nil then
+				for k, v in pairs( companyExportSettings ) do 
+						logger:trace("Export rule: " .. tostring(k) .. ' = ' .. tostring(v) .. '\n')
+						local currentValue = tostring(exportContext.propertyTable[k])
+						if currentValue ~= tostring(v) then
+							logger:trace("" .. currentValue .. " is not legal setting for " .. k)	
+							 error ("" .. currentValue .. " is not legal setting for " .. k .. ", since that should be " .. tostring(v))
+						end
+				 end 
+			end
 		end
-		
+			
 		if not outputFolder then
 			error "Unable to create destination directory."
 		end
-	
 		
 		configureAndExport(exportContext, 
 			exportContext.exportSession, 
