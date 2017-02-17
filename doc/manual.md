@@ -32,11 +32,18 @@ It also shows if something is wrong with the plugins and you can turn on diagnos
 
 #Configuration
 The configuration file is found in each of the plugins folder (` *%AppData%\Roaming\Adobe\Lightroom\Modules* `)
-*input: the path to the RetouchLink output folder, example `c:\my retouch jobs`.
-*user: is the user id  of the operating system user that runs the installation program. Is used in the job marker files to identify the user that has taken the job.
-*dbg: `false`/`true` If set to true the plugins log more and show dialog messages when they are ran. 
-*allowedCompanies: List of the prefix of the jobs this user should get. Example `{"c1-","c2-","c3-"}`. If no filter the value must be `{}`. (This is only used by the import plugin)
-*companyExportSettings:  define company spesific rules that is validated against properties in the exportContext.propertyTable. If `dbg = true` all possible values are printed in the log file.  (this is only used by the export plug-in)
+* *input*  
+The path to the RetouchLink output folder, example `c:\my retouch jobs`.
+* *user*  
+Is the user id  of the operating system user that runs the installation program. Is used in the job marker files to identify the user that has taken the job.
+* *dbg*  
+Possible values are `false` and `true` If set to true the plugins log more and show dialog messages when they are ran. 
+* *charsReservedToCompanyPrefix*  
+Number of the first characters in the jobname are used for company/portal prefix. Default value is `3`. The prefix per company/portal on a job are configured in Retouch Link.
+* *allowedCompanies*  
+List of the prefix of the jobs this user should get. Example `{"c1-","c2-","c3-"}`. If no filter the value must be `{}`. (This is only used by the import plugin)
+* *companyExportSettings*  
+Define company spesific rules that is validated against properties in the exportContext.propertyTable. If `dbg = true` all possible values are printed in the log file.  (this is only used by the export plug-in)
 
 Note that if you manually change the config settings you will have to reload the plug-ins in Lightroom.
 

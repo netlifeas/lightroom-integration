@@ -18,6 +18,4 @@ This project is licensed with the [GNU GPL3 License](https://www.gnu.org/license
 
 #TODOS
 - Better documentation
-- Better jobname prefix definition
 - Able to set all settings thru the installer
-
