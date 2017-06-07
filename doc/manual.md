@@ -10,18 +10,18 @@ RetouchLink running on a server and is set to auto download jobs into a shared f
 The plugins are not need in this case, but it helps the user dong the right things. It also has the benifit of the verification rules that can be set on export. For example that the exported images are in AdobeRGB or sRGB.
 
 
-#Requirements
+# Requirements
 
-##Adobe Lightroom
+## Adobe Lightroom
 This is an plugin integration for Adobe Lightroom and therefore requires that Lightroom already is installed on the computer before this is installed.
 
-##Retouch Link
+## Retouch Link
 For this plug-in to work certain settings has to be set in the RetouchLink.
 * Use default *Image file name* pattern
 * The *Use output directory* must be checked.
 * Retouch Link version must be 2.0.0 or higher
 
-#Installation
+# Installation
 During the installation you have to point it to the folder where Retouhc Link exports the  jobs.
 ![Choose the folder where Retoruc Link exports jobs](installer-RL-folder.PNG?raw=true "Choose folder")
 
@@ -30,7 +30,7 @@ The installer finds the *Modules* folder for Lightroom and adds the plugins ther
 ![Plug-in Manager](plugin-manager.png?raw=true "Plug-in Manager")
 It also shows if something is wrong with the plugins and you can turn on diagnostic logging.
 
-#Configuration
+# Configuration
 The configuration file is found in each of the plugins folder (` *%AppData%\Roaming\Adobe\Lightroom\Modules* `)
 * *input*  
 The path to the RetouchLink output folder, example `c:\my retouch jobs`.
@@ -47,7 +47,7 @@ Define company spesific rules that is validated against properties in the export
 
 Note that if you manually change the config settings you will have to reload the plug-ins in Lightroom.
 
-#Import
+# Import
 The plugin imports the next job that is not already taken based on following criterias:
 - company filter: only jobs with a prefixed with a company prefix the user supports.
 - the jobs are sorted on priority (see priority.txt in the job folder) and descending on folder creation time. The jobs can be set to have high priortity in QA.
@@ -58,7 +58,7 @@ If a job is available Lightroom will start importing the pictures, and this can 
 
 ![No jobs-available message dialog](no-jobs-available.PNG?raw=true "No jobs-available message")
 
-#Export
+# Export
 Exports the job to an output folder inside the original source folder.
 ![Lightroom export dialog](export.png?raw=true "Export dialog")
 
@@ -67,6 +67,6 @@ If some images are missing, it shows a messages informing about how many images 
 It validates the export settings based on the rules defined in `companyExportSettings` in the config file. 
 
 
-#FAQ
-##No jobs are imported, but I know that at least one is available
+# FAQ
+## No jobs are imported, but I know that at least one is available
 The cause could be that the plugins are configured with wrong RetouchLink path or with company filter.
