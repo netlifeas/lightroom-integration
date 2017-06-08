@@ -1,5 +1,8 @@
 -- Main export script
-require 'Config'
+
+-- Config
+local configurationManager = require 'ConfigurationManager'
+local Config = configurationManager.getConfig()
 
 -- Lightroom API
 local LrPathUtils = import 'LrPathUtils'
