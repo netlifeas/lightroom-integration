@@ -11,6 +11,10 @@ dependencies:
 compile:
   override:
     - echo "compile build number ${BUILD_NUMBER}" 
+    - echo "Duplicating common resources" 
+    - cp -a src/main/resources/common/. src/main/resources/import/
+    - cp -a src/main/resources/common/. src/main/resources/export/
+    - echo "Making installer" 
     - tree
     - sudo ./makeInstaller ${BUILD_NUMBER}
   post:
