@@ -6,8 +6,11 @@ return {
 	LrPluginName = "Netlife Export Plugin",
 	
 	LrExportServiceProvider = {
-		{ title = "Export current Netlife job", file = 'ExportServiceProvider.lua', builtInPresetsDir = "Preset" }
+		{ title = "Export current Netlife job", file = 'ExportServiceProvider.lua'}
 	},
+	
+	-- Add the entry for the Plug-in Manager Dialog
+	LrPluginInfoProvider = 'PluginInfoProvider.lua',
 	
 	VERSION = {
 		major = 0, 

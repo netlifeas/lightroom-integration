@@ -1,7 +1,7 @@
 --Describe a service export provider
 
 require 'ExportTask'
-require 'Config'
+-- require 'Config'
 
 return {	
 	hideSections = {
@@ -14,7 +14,7 @@ return {
 	allowFileFormats = nil, -- nil equates to all available formats	
 	allowColorSpaces = nil, -- nil equates to all color spaces
 	
-	builtInPresetsDir = "Preset",
+	-- builtInPresetsDir = "Preset",
 
 	exportPresetFields = {
 			{ key = "root", default = nil },
