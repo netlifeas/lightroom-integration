@@ -30,7 +30,7 @@ compile:
     - cp target/LR-integration-setup.exe setup-plugin.exe
     - zip LR-integration setup-plugin.exe
     - cp LR-integration.zip $CIRCLE_ARTIFACTS/LR-integration.zip
-    - zip $CIRCLE_ARTIFACTS/manual-plugin-installation temp/NetlifeExport.lrplugin temp/NetlifeImport.lrplugin
+    - zip -r $CIRCLE_ARTIFACTS/manual-plugin-installation temp/NetlifeExport.lrplugin temp/NetlifeImport.lrplugin
     - tree
 
 
