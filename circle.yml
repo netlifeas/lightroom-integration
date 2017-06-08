@@ -18,19 +18,19 @@ compile:
     - tree
     - sudo ./makeInstaller ${BUILD_NUMBER}
     - echo "Making manual install packages" 
-    - mkdir temp
+    - mkdir plugins
     - tree
-    - cp src/main/resources/Config.lua temp/tempConfig.lua 
-    - cp -a src/main/resources/export/. temp/NetlifeExport.lrplugin 
-    - cp -a temp/tempConfig.lua temp/NetlifeExport.lrplugin/Config.lua
-    - cp -a src/main/resources/import/. temp/NetlifeImport.lrplugin
-    - cp -a temp/tempConfig.lua temp/NetlifeImport.lrplugin/Config.lua
+    - cp src/main/resources/Config.lua plugins/tempConfig.lua 
+    - cp -a src/main/resources/export/. plugins/NetlifeExport.lrplugin 
+    - cp -a plugins/tempConfig.lua plugins/NetlifeExport.lrplugin/Config.lua
+    - cp -a src/main/resources/import/. plugins/NetlifeImport.lrplugin
+    - cp -a plugins/tempConfig.lua plugins/NetlifeImport.lrplugin/Config.lua
   post:
     - tree
     - cp target/LR-integration-setup.exe setup-plugin.exe
     - zip LR-integration setup-plugin.exe
     - cp LR-integration.zip $CIRCLE_ARTIFACTS/LR-integration.zip
-    - zip -r $CIRCLE_ARTIFACTS/manual-plugin-installation temp/NetlifeExport.lrplugin temp/NetlifeImport.lrplugin
+    - zip -r $CIRCLE_ARTIFACTS/manual-plugin-installation plugins/NetlifeExport.lrplugin plugins/NetlifeImport.lrplugin
     - tree
 
 
