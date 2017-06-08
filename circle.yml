@@ -18,10 +18,12 @@ compile:
     - tree
     - sudo ./makeInstaller ${BUILD_NUMBER}
     - echo "Making manual install packages" 
-    - cp -a src/main/resources/Config.lua target/tempConfig.lua 
-    - cp -a src/main/resources/Config.lua target/tempConfig.lua 
+    - tree
+    - cp src/main/resources/Config.lua target/tempConfig.lua 
     - cp -a src/main/resources/export/. target/NetlifeExport.lrplugin 
+    - cp -a target/tempConfig.lua target/NetlifeExport.lrplugin/Config.lua
     - cp -a src/main/resources/import/. target/NetlifeImport.lrplugin
+    - cp -a target/tempConfig.lua target/NetlifeImport.lrplugin/Config.lua
   post:
     - tree
     - cp target/LR-integration-setup.exe setup-plugin.exe
