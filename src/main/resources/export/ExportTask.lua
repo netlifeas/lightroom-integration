@@ -197,9 +197,10 @@ function getActiveSource()
 		error "Please select one and only one folder for export, then try again."
 	end
 	
-	-- TODO: need to add a check that the user has selected a LrFolder and nothing else
 	-- LrFolder	
-	-- LrDialogs.message(type(folders[1])
+	if (type(folders[1]) == "string") then
+		error "Please select from the folder, not from a catalog or collection, then try again."
+	end
 	
 	return folders[1]
 end
