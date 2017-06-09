@@ -24,8 +24,8 @@ compile:
     - cp -a src/main/resources/Config.lua plugins/NetlifeExport.lrplugin/Config.lua
     - cp -a src/main/resources/import/. plugins/NetlifeImport.lrplugin
     - cp -a src/main/resources/Config.lua plugins/NetlifeImport.lrplugin/Config.lua
-    - sed -i s/123456789/${BUILD_NUMBER}/g plugins/NetlifeImport.lrplugin/info.lua
-    - sed -i s/123456789/${BUILD_NUMBER}/g plugins/NetlifeExport.lrplugin/info.lua
+    - sed -i s/123456789/${BUILD_NUMBER}/g plugins/NetlifeImport.lrplugin/Info.lua
+    - sed -i s/123456789/${BUILD_NUMBER}/g plugins/NetlifeExport.lrplugin/Info.lua
   post:
     - tree
     - cp target/LR-integration-setup.exe setup-plugin.exe
