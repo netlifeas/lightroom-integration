@@ -1,7 +1,7 @@
 --Describe a service export provider
 
 require 'ExportTask'
-require 'Config'
+-- require 'Config'
 
 return {	
 	hideSections = {

@@ -1,4 +1,5 @@
-require 'Config'
+local configurationManager = require 'ConfigurationManager'
+local Config = configurationManager.getConfig()
 
 -- Lightroom API
 local LrFileUtils = import 'LrFileUtils'

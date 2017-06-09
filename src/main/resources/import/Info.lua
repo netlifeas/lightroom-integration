@@ -8,11 +8,14 @@ return {
 	LrExportMenuItems = {
 		{ title = "&Import next available Netlife job", file = "Import.lua" }
 	},
-
+	
+	-- Add the entry for the Plug-in Manager Dialog
+	LrPluginInfoProvider = 'PluginInfoProvider.lua',
+	
 	VERSION = {
 		major = 0, 
 		minor = 0, 
-		revision = 0, 
+		revision = 1, 
 		build = 123456789 -- 123.. is a magic constant, replaced by the installer
 	}
 }

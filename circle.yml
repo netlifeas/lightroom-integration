@@ -11,13 +11,29 @@ dependencies:
 compile:
   override:
     - echo "compile build number ${BUILD_NUMBER}" 
+    - echo "Duplicating common resources" 
+    - cp -a src/main/resources/common/. src/main/resources/import/
+    - cp -a src/main/resources/common/. src/main/resources/export/
+    - echo "Making installer" 
     - tree
     - sudo ./makeInstaller ${BUILD_NUMBER}
+    - echo "Making manual install packages" 
+    - mkdir plugins
+    - tree
+    - cp -a src/main/resources/export/. plugins/NetlifeExport.lrplugin 
+    - cp -a src/main/resources/Config.lua plugins/NetlifeExport.lrplugin/Config.lua
+    - cp -a src/main/resources/import/. plugins/NetlifeImport.lrplugin
+    - cp -a src/main/resources/Config.lua plugins/NetlifeImport.lrplugin/Config.lua
+    - sed -i s/123456789/${BUILD_NUMBER}/g plugins/NetlifeImport.lrplugin/Info.lua
+    - sed -i s/123456789/${BUILD_NUMBER}/g plugins/NetlifeExport.lrplugin/Info.lua
   post:
     - tree
     - cp target/LR-integration-setup.exe setup-plugin.exe
     - zip LR-integration setup-plugin.exe
     - cp LR-integration.zip $CIRCLE_ARTIFACTS/LR-integration.zip
+    - zip -r $CIRCLE_ARTIFACTS/manual-plugin-installation plugins/NetlifeExport.lrplugin plugins/NetlifeImport.lrplugin
+    - tree
+
 
 test:
   override:
