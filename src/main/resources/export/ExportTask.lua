@@ -31,7 +31,7 @@ logger:enable 'logfile'
 ExportTask = {
 	processRenderedPhotos = function( functionContext, exportContext )
 	
-		local inputFolder = inputFolder()
+		local inputFolder = getActiveSource()
 		logger:trace(inputFolder)
 		local jobName = inputFolder:getName()
 		local jobFolder = child(Config.input, jobName)
@@ -190,12 +190,16 @@ function configureAndExport(exportContext, exportSession, exportParams, outputFo
 end
 
 
-function inputFolder()
+function getActiveSource()
 	local folders = catalog:getActiveSources()
 	
 	if #folders ~= 1 then
 		error "Please select one and only one folder for export, then try again."
 	end
+	
+	-- TODO: need to add a check that the user has selected a LrFolder and nothing else
+	-- LrFolder	
+	-- LrDialogs.message(type(folders[1])
 	
 	return folders[1]
 end
