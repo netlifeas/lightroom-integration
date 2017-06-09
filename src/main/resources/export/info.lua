@@ -14,7 +14,7 @@ return {
 	
 	VERSION = {
 		major = 0, 
-		minor = 0, 
+		minor = 1, 
 		revision = 0, 
 		build = 123456789 -- Magic constant, replaced by the installer.
 	}

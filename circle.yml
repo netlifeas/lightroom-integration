@@ -20,11 +20,12 @@ compile:
     - echo "Making manual install packages" 
     - mkdir plugins
     - tree
-    - cp src/main/resources/Config.lua plugins/tempConfig.lua 
     - cp -a src/main/resources/export/. plugins/NetlifeExport.lrplugin 
-    - cp -a plugins/tempConfig.lua plugins/NetlifeExport.lrplugin/Config.lua
+    - cp -a src/main/resources/Config.lua plugins/NetlifeExport.lrplugin/Config.lua
     - cp -a src/main/resources/import/. plugins/NetlifeImport.lrplugin
-    - cp -a plugins/tempConfig.lua plugins/NetlifeImport.lrplugin/Config.lua
+    - cp -a src/main/resources/Config.lua plugins/NetlifeImport.lrplugin/Config.lua
+    - sed -i s/123456789/${BUILD_NUMBER}/g plugins/NetlifeImport.lrplugin/info.lua
+    - sed -i s/123456789/${BUILD_NUMBER}/g plugins/NetlifeExport.lrplugin/info.lua
   post:
     - tree
     - cp target/LR-integration-setup.exe setup-plugin.exe
