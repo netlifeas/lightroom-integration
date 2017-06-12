@@ -42,13 +42,16 @@ The zip file with the plugins have following structure:
 1. Unzip the the file to a location where you want to have the plugins
 2. Start Lightroom and goto `Plug-ins Manager`
 3. Add first the import plugin and then the export plugin
-4. Configure the plugins with at least the folder where retouch link puts jobs and userid
+4. Configure the plugins from the `Plug-ins manager`
 
 
-[More info about how to manage Lightroom plugins](https://helpx.adobe.com/lightroom/how-to/lightroom-use-manage-plugins.html)
+[More info about how to manage (install, remove and configure) Lightroom plugins](https://helpx.adobe.com/lightroom/how-to/lightroom-use-manage-plugins.html)
 
 # Configuration
+
 The configuration is stored in a common file for both of the plugins in this workflow. The location is found from the `Plug-in Manager` in Lightroom.
+![Plug-in Manager](plugin-manager-config.png?raw=true "Plug-in Manager")
+The different settings are:
 * *input*  
 The path to the RetouchLink output folder, example `c:\my retouch jobs`.
 * *user*  
