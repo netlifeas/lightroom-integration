@@ -14,6 +14,19 @@ local LrSystemInfo = import 'LrSystemInfo'
  
 local PluginInfoProvider = {}
 
+local tableContains = function (table, element)
+  for _, value in pairs(table) do
+    if value == element then
+      return true
+    end
+  end
+  return false
+end
+
+local function trimString( s )
+   return string.match( s,"^()%s*$") and "" or string.match(s,"^%s*(.*%S)" )
+end
+
 local configInfoSection = function(f, propertyTable) 
 	local configInfo 
 	local color 
@@ -202,34 +215,50 @@ end
 
 local allowedCompaniesSection = function(f, propertyTable) 
 
-	local companies = ""
-	for k, company in pairs (Config.allowedCompanies) do
-		if companies == "" then
-			companies = company 
-		else
-			companies = companies .. ", " .. company 
-		end
-	end 
 
-	if companies == "" then
-		companies = "No company filter defined"
-	end
-	
 	return f:row {
 				spacing = f:control_spacing(),
-
+				bind_to_object = Config,
 				f:static_text {
 					title = "AllowedCompanies (empty mean all is companies are allowed)",
 					fill_horizontal = 1,
 				},
-				f:static_text {
+				f:edit_field {
 					width = 150,
-					title = companies,
+					immediate = false,
+					tooltip = "The company prefixes separated by comma",
+					value = bind 'allowedCompanies',
+					value_to_string = function (view, value)
+					
+						local companies = ""
+						for k, company in pairs (value) do
+							if companies == "" then
+								companies = company 
+							else
+								companies = companies .. "," .. company 
+							end
+						end 
+						return companies
+					end,
+					string_to_value = function (view, stringValue)
+						objProp = { }
+						index = 1
 
-				},
+						for company in string.gmatch(stringValue, '([^,]+)') do 
+							company = trimString (company)
+							if not tableContains(objProp, company) then
+								objProp[index] = company
+								index = index + 1
+							end
+						end
+						return objProp
+
+					end
+				}
 			}
 
 end 
+
 
 local companyExportSettingsSection = function(f, propertyTable) 
 
