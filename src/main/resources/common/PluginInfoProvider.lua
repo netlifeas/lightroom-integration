@@ -78,7 +78,7 @@ local userSection = function(f, propertyTable)
 	return	f:row {
 			spacing = f:control_spacing(),
 				f:static_text {
-					title = "User (MUST be UNIQUE for each user \nworking against the same Lablink installation)",
+					title = "User (MUST be UNIQUE for each user \nworking against the same RetouchLink installation)",
 					tooltip = "The user id each job are marked with when a job are locked by this plugin",
 					height_in_lines = 2,
 					fill_horizontal = 1,
