@@ -61,6 +61,66 @@ local configInfoSection = function(f, propertyTable)
 
 end 
 
+local userSection = function(f, propertyTable) 
+	return	f:row {
+			spacing = f:control_spacing(),
+				f:static_text {
+					title = "User (MUST be UNIQUE for each user \nworking against the same Lablink installation)",
+					tooltip = "The user id each job are marked with when a job are locked by this plugin",
+					height_in_lines = 2,
+					fill_horizontal = 1,
+				},
+				f:edit_field { -- create edit field
+					width = 150,
+					bind_to_object = Config,
+					value = bind 'user', -- bound to property
+					immediate = true -- update value w/every keystroke
+				}
+			}
+
+end
+
+local inputFolderSection = function(f, propertyTable) 
+	return f:row {
+		bind_to_object = Config,
+		spacing = f:control_spacing(),
+		tooltip = "The folder where the plugin will look for new jobs",
+		f:static_text {
+			title = "Jobs input folder",
+			fill_horizontal = 1,
+		},
+		f:edit_field {
+			width = 150,
+			value = bind 'input',
+			immediate = true ,
+			tooltip = "Example values 'k:\jobs' on windows and '/home/jobs' MAC"
+
+		},
+	}
+
+end
+
+local debugSection = function(f, propertyTable) 
+	return f:row {
+		spacing = f:control_spacing(),
+		f:static_text {
+			title = "Log debug info",
+			fill_horizontal = 1,
+		},
+		f:checkbox {
+			tooltip = "tooltip",
+			bind_to_object = Config,						
+			width = 150,
+			value = bind 'dbg', -- bind to the key value
+			checked_value = true, -- this is the initial state
+			unchecked_value = false, -- when the user unchecks the box,
+			-- this becomes the value, and thus
+			-- the bound key value as well.
+		}, 
+	}
+end
+
+
 local saveSection = function(f, propertyTable) 
 	return 	f:row {
 		spacing = f:control_spacing(),
@@ -104,6 +164,42 @@ local usermanualSection = function(f, propertyTable)
 
 end 
 
+
+local companyInfoSection = function(f, propertyTable) 
+	return	f:row {
+		spacing = f:control_spacing(),
+		f:static_text {
+			width = 300,
+			height_in_lines = 3,
+			title = "It is not mandatory to use the company section. It provide the function to say that a operator only should get jobs from some of multiple companies. It also makes it possible to add export rule checks, to veriy that the operator has set the correct export settings.",
+			fill_horizontal = 1,
+		}
+	}
+end
+
+local companyPrefixSection = function(f, propertyTable) 
+	return	f:row {
+		spacing = f:control_spacing(),
+		bind_to_object = Config,
+		f:static_text {
+			width = 150,
+			title = "Chars reserved to company prefix (0 = no companies)",
+			fill_horizontal = 1,
+		},
+		f:edit_field { -- create edit field
+			tooltip = "Must be a number from 0 to 10",
+			width = 150,
+			precision = 0,
+			increment = 1,
+			min = 0,
+			max = 10,
+			value = bind 'charsReservedToCompanyPrefix', -- bound to property
+			immediate = true -- update value w/every keystroke
+		}				
+	}
+end
+
+
 local allowedCompaniesSection = function(f, propertyTable) 
 
 	local companies = ""
@@ -123,7 +219,7 @@ local allowedCompaniesSection = function(f, propertyTable)
 				spacing = f:control_spacing(),
 
 				f:static_text {
-					title = "AllowedCompanies",
+					title = "AllowedCompanies (empty mean all is companies are allowed)",
 					fill_horizontal = 1,
 				},
 				f:static_text {
@@ -141,7 +237,7 @@ local companyExportSettingsSection = function(f, propertyTable)
 	return f:row {
 		spacing = f:control_spacing(),
 		f:static_text {
-			title = "CompanyExportSettings",
+			title = "CompanyExportSettings ",
 			fill_horizontal = 1,
 		},
 		f:static_text {
@@ -160,78 +256,15 @@ function PluginInfoProvider.sectionsForTopOfDialog (f, propertyTable )
 		{
 			title = "Netlife Workflow Plugins",
 			usermanualSection(f, propertyTable),
-			f:row {
-			spacing = f:control_spacing(),
-				f:static_text {
-					title = "User (MUST be UNIQUE for each user \nworking against the same Lablink installation)",
-					tooltip = "The user id each job are marked with when a job are locked by this plugin",
-					height_in_lines = 2,
-					fill_horizontal = 1,
-				},
-				f:edit_field { -- create edit field
-					width = 150,
-					bind_to_object = Config,
-					value = bind 'user', -- bound to property
-					immediate = true -- update value w/every keystroke
-				}
-			},
-			f:row {
-				bind_to_object = Config,
-				spacing = f:control_spacing(),
-				tooltip = "The folder where the plugin will look for new jobs",
-				f:static_text {
-					title = "Jobs input folder",
-					fill_horizontal = 1,
-				},
-				f:edit_field {
-					width = 150,
-					value = bind 'input',
-					immediate = true ,
-					tooltip = "Example values 'k:\jobs' on windows and '/home/jobs' MAC"
-
-				},
-			},
-			f:row {
-				spacing = f:control_spacing(),
-				bind_to_object = Config,
-				f:static_text {
-					width = 150,
-					title = "Chars reserved to company prefix",
-					fill_horizontal = 1,
-				},
-				f:edit_field { -- create edit field
-					tooltip = "Must be a number from 0 to 10",
-					width = 150,
-					precision = 0,
-					increment = 1,
-					min = 0,
-					max = 10,
-					value = bind 'charsReservedToCompanyPrefix', -- bound to property
-					immediate = true -- update value w/every keystroke
-				}				
-			},
-			f:row {
-				spacing = f:control_spacing(),
-				f:static_text {
-					title = "Log debug info",
-					fill_horizontal = 1,
-				},
-				f:checkbox {
-					tooltip = "tooltip",
-					bind_to_object = Config,						
-					width = 150,
-					value = bind 'dbg', -- bind to the key value
-					checked_value = true, -- this is the initial state
-					unchecked_value = false, -- when the user unchecks the box,
-					-- this becomes the value, and thus
-					-- the bound key value as well.
-				}, 
-			},
+			userSection(f, propertyTable),
+			inputFolderSection(f, propertyTable),
+			debugSection(f, propertyTable),
+			companyInfoSection(f, propertyTable),		
+			companyPrefixSection(f, propertyTable),
 			allowedCompaniesSection(f, propertyTable),
 			companyExportSettingsSection(f, propertyTable),
 			configInfoSection(f, propertyTable),
 			saveSection(f,propertyTable)
-			
 		},
 
 	}
