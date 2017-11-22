@@ -7,7 +7,7 @@ It support two different main scenarios:
 RetouchLink running on a server and is set to auto download jobs into a shared folder. The folder is then mapped on the computers the retoucher uses Ligthroom  on, and the users use the plugins to get next available job and export when finished. The plugins is then handling that not multiple users are working on the same jobs, etc.
 
 2. *One RetouchLink per retouch user*  
-The plugins are not need in this case, but it helps the user dong the right things. It also has the benifit of the verification rules that can be set on export. For example that the exported images are in AdobeRGB or sRGB.
+The plugins are not needed in this case, but it helps the user do the right things. It also has the benifit of the verification rules that can be set on export. For example that the exported images are in AdobeRGB or sRGB.
 
 
 # Requirements
